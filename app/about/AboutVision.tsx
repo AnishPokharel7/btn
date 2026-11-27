@@ -11,8 +11,8 @@ const visionPoints = [
 
 export default function AboutVision() {
   return (
-    <section className="w-full bg-[#F8F9FB] py-14 md:py-20 lg:py-28 px-4 md:px-8 lg:px-12 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-[#F8F9FB] section-padding overflow-hidden">
+      <div className="container-page">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-16 xl:gap-20 items-center">
 
           {/* Right Column: Image */}

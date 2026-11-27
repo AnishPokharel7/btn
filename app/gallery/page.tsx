@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { Container } from "@/components/shared/Container";
 
 interface GalleryItem {
   id: string;
@@ -70,8 +71,8 @@ export default function GalleryPage() {
   return (
     <main className="min-h-screen w-full flex flex-col bg-white">
       {/* Gallery Section */}
-      <section className="w-full py-16 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto w-full">
+      <section className="w-full section-padding">
+        <Container size="page">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
             <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-slate-950 tracking-tight leading-tight mb-3 sm:mb-4">
@@ -126,7 +127,7 @@ export default function GalleryPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
     </main>
   );

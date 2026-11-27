@@ -70,7 +70,7 @@ const MainBar = () => {
       ref={navRef}
       className="w-full bg-[#012358] backdrop-blur-md text-slate-800 sticky top-0 z-50 shadow-lg border-b border-[#005DCD]/30"
     >
-      <div className="max-w-7xl mx-auto w-full h-20 flex items-center justify-between px-4 md:px-8 lg:px-12">
+      <div className="container-page h-20 flex items-center justify-between">
       {/* Logo */}
       <div className="flex items-center gap-3">
         <Link href="/" className="flex items-center group">

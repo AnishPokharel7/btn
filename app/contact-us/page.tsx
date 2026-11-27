@@ -52,8 +52,8 @@ export default function ContactUsPage() {
   };
 
   return (
-    <main id="contact-us" className="w-full bg-[#F8F9FB] min-h-screen px-4 md:px-8 lg:px-12 py-12 sm:py-16 lg:py-20">
-      <div className="w-full max-w-7xl mx-auto flex flex-col gap-12 sm:gap-14">
+    <main id="contact-us" className="w-full bg-[#F8F9FB] min-h-screen section-padding">
+      <div className="container-page flex flex-col gap-12 sm:gap-14">
         {/* Page Header */}
         <div className="text-center max-w-3xl mx-auto">
           <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FD6100]/10 border border-[#FD6100]/20 text-[#FD6100] font-bold tracking-wider text-xs sm:text-sm uppercase mb-3.5">

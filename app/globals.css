@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -46,89 +45,91 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --text-hero: clamp(4rem, 8vw, 4.5rem);
-  --text-section: clamp(2.5rem, 5vw, 3rem);
-  --text-subheading: clamp(1.5rem, 3vw, 1.875rem);
-  --text-body: clamp(1rem, 1.5vw, 1.125rem);
+  --text-hero: clamp(3.5rem, 7vw, 5rem);
+  --text-section: clamp(2.25rem, 4.5vw, 3rem);
+  --text-subheading: clamp(1.375rem, 2.8vw, 1.75rem);
+  --text-body: clamp(1rem, 1.4vw, 1.125rem);
   --text-label: 0.875rem;
 }
 
 :root {
-  /* Brand Palette */
-  --brand-primary: #FD6100;        /* Orange CTA */
-  --brand-secondary: #005DCD;      /* Bright Blue */
-  --brand-accent: #FD6100;         /* Orange CTA */
-  --brand-bg: #FFFFFF;             /* White */
-  --brand-border: #E2E8F0;         /* Light Blue-Gray */
-  --brand-text: #1A1A2E;           /* Dark Charcoal */
-  --brand-text-secondary: #4A4A68; /* Medium Charcoal */
+  /* Better Tomorrow Nepal Foundation - Brand Palette */
+  --brand-primary: #174D3B;        /* Forest Green */
+  --brand-secondary: #E8B85D;      /* Warm Gold */
+  --brand-background: #F4F0E6;     /* Soft Ivory */
+  --brand-surface: #FFFFFF;        /* White */
+  --brand-text: #303B35;           /* Deep Charcoal */
+  --brand-text-secondary: #777F79; /* Soft Grey */
+  --brand-border: #E5E0D5;         /* Light border */
 
-  --background: #FFFFFF;
-  --foreground: #1A1A2E;
+  --background: #F4F0E6;
+  --foreground: #303B35;
   --card: #FFFFFF;
-  --card-foreground: #1A1A2E;
+  --card-foreground: #303B35;
   --popover: #FFFFFF;
-  --popover-foreground: #1A1A2E;
-  --primary: #FD6100;
+  --popover-foreground: #303B35;
+  --primary: #174D3B;
   --primary-foreground: #FFFFFF;
-  --secondary: #005DCD;
-  --secondary-foreground: #FFFFFF;
-  --muted: #F8F9FB;
-  --muted-foreground: #4A4A68;
-  --accent: #FD6100;
-  --accent-foreground: #FFFFFF;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: #E2E8F0;
-  --input: #E2E8F0;
-  --ring: #FD6100;
-  --chart-1: #FD6100;
-  --chart-2: #005DCD;
-  --chart-3: #1A1A2E;
-  --chart-4: #4A4A68;
-  --chart-5: #E2E8F0;
-  --radius: 0.625rem;
+  --secondary: #E8B85D;
+  --secondary-foreground: #174D3B;
+  --muted: #EDE8DE;
+  --muted-foreground: #777F79;
+  --accent: #E8B85D;
+  --accent-foreground: #174D3B;
+  --destructive: #B91C1C;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E0D5;
+  --input: #E5E0D5;
+  --ring: #174D3B;
+  --chart-1: #174D3B;
+  --chart-2: #E8B85D;
+  --chart-3: #303B35;
+  --chart-4: #777F79;
+  --chart-5: #E5E0D5;
+  --radius: 0.75rem;
   --sidebar: #FFFFFF;
-  --sidebar-foreground: #1A1A2E;
-  --sidebar-primary: #FD6100;
+  --sidebar-foreground: #303B35;
+  --sidebar-primary: #174D3B;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #F8F9FB;
-  --sidebar-accent-foreground: #1A1A2E;
-  --sidebar-border: #E2E8F0;
-  --sidebar-ring: #FD6100;
+  --sidebar-accent: #EDE8DE;
+  --sidebar-accent-foreground: #303B35;
+  --sidebar-border: #E5E0D5;
+  --sidebar-ring: #174D3B;
 }
 
 .dark {
-  --background: #1A1A2E;
-  --foreground: #FFFFFF;
-  --card: #1A1A2E;
-  --card-foreground: #FFFFFF;
-  --popover: #1A1A2E;
-  --popover-foreground: #FFFFFF;
-  --primary: #FD6100;
-  --primary-foreground: #1A1A2E;
-  --secondary: #005DCD;
-  --secondary-foreground: #FFFFFF;
-  --muted: #2A2A4A;
-  --muted-foreground: #A0A0C0;
-  --accent: #FD6100;
-  --accent-foreground: #1A1A2E;
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: #2A2A4A;
-  --input: #2A2A4A;
-  --ring: #FD6100;
-  --chart-1: #FD6100;
-  --chart-2: #005DCD;
-  --chart-3: #FFFFFF;
-  --chart-4: #A0A0C0;
-  --chart-5: #2A2A4A;
-  --sidebar: #1A1A2E;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #FD6100;
-  --sidebar-primary-foreground: #1A1A2E;
-  --sidebar-accent: #2A2A4A;
-  --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: #2A2A4A;
-  --sidebar-ring: #FD6100;
+  --background: #1A1F1C;
+  --foreground: #F4F0E6;
+  --card: #222A26;
+  --card-foreground: #F4F0E6;
+  --popover: #222A26;
+  --popover-foreground: #F4F0E6;
+  --primary: #4ADE80;
+  --primary-foreground: #1A1F1C;
+  --secondary: #E8B85D;
+  --secondary-foreground: #1A1F1C;
+  --muted: #2D3631;
+  --muted-foreground: #A0A8A3;
+  --accent: #E8B85D;
+  --accent-foreground: #1A1F1C;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #3A443E;
+  --input: #3A443E;
+  --ring: #4ADE80;
+  --chart-1: #4ADE80;
+  --chart-2: #E8B85D;
+  --chart-3: #F4F0E6;
+  --chart-4: #A0A8A3;
+  --chart-5: #3A443E;
+  --sidebar: #222A26;
+  --sidebar-foreground: #F4F0E6;
+  --sidebar-primary: #4ADE80;
+  --sidebar-primary-foreground: #1A1F1C;
+  --sidebar-accent: #2D3631;
+  --sidebar-accent-foreground: #F4F0E6;
+  --sidebar-border: #3A443E;
+  --sidebar-ring: #4ADE80;
 }
 
 @layer base {
@@ -139,7 +140,7 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
   html {
-    @apply font-sans;
+    @apply font-sans scroll-smooth;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading font-bold text-foreground;
@@ -156,4 +157,46 @@
   .text-subheading { @apply text-[var(--text-subheading)] leading-snug; }
   .text-body { @apply text-[var(--text-body)] leading-normal; }
   .text-label { @apply text-[var(--text-label)] leading-normal; }
+}
+
+@layer utilities {
+  .container-page {
+    @apply w-full mx-auto px-6 max-w-[90rem] md:px-8;
+  }
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  .container-main {
+    @apply max-w-7xl mx-auto w-full px-4 md:px-8 lg:px-12;
+  }
+  .section-padding-lg {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+  .section-padding-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+  .card-base {
+    @apply bg-card border border-border rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-base transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-secondary text-secondary-foreground font-semibold text-base transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-semibold text-base bg-transparent transition-all duration-200 hover:bg-primary hover:text-primary-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-primary font-semibold text-base bg-transparent transition-all duration-200 hover:bg-muted focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  }
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-current after:scale-x-0 after:origin-bottom-right hover:after:scale-x-100 after:origin-bottom-left transition-transform duration-300;
+  }
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
 }

@@ -1,10 +1,10 @@
-import { Users, Heart, FolderKanban, Image, TrendingUp, ArrowUpRight, Building2 } from "lucide-react";
+import { Users, Heart, FolderKanban, Image as ImageIcon, TrendingUp, ArrowUpRight, Building2 } from "lucide-react";
 
 
 const stats = [
   {
     label: "Total Donations",
-    value: "रु 12,45,000",
+    value: "रु 12,45,05",
     change: "+12.5%",
     changeLabel: "vs last month",
     icon: Heart,
@@ -34,7 +34,7 @@ const stats = [
     value: "6",
     change: "+2",
     changeLabel: "this month",
-    icon: Image,
+    icon: ImageIcon,
     iconColor: "bg-orange-100 text-orange-600",
     trend: "up",
   },
@@ -228,7 +228,7 @@ export default function DashboardPage() {
               </a>
               <a href="/admin/content/gallery" className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/50 hover:bg-white transition-all group">
                 <div className="w-10 h-10 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center group-hover:bg-orange-600 group-hover:text-white transition-colors">
-                  <Image className="w-5 h-5" aria-hidden="true" />
+                  <ImageIcon className="w-5 h-5" aria-hidden="true" />
                 </div>
                 <div>
                   <p className="font-medium text-[#012358]">Upload Gallery Images</p>

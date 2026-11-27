@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Search, MoreVertical, Edit, Trash2, Eye, Upload, X, Image as LucideImage, Plus } from "lucide-react";
+import { Search, MoreVertical, Edit, Trash2, Eye, Upload, X, Image as LucideImage } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 

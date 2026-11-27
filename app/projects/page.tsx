@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import type { Metadata } from "next";
+import { Container } from "@/components/shared/Container";
 
 export const metadata: Metadata = {
   title: "Featured Projects | BTN Organization",
@@ -63,8 +64,8 @@ export default function ProjectsPage() {
   return (
     <main className="min-h-screen w-full flex flex-col bg-white">
       {/* Featured Projects Section */}
-      <section className="w-full py-16 md:py-20 lg:py-24 px-4 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto w-full">
+      <section className="w-full section-padding">
+        <Container size="page">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 md:mb-16">
             <span className="text-[#0284c7] font-bold tracking-wider text-xs sm:text-sm uppercase block mb-2 sm:mb-3">
@@ -159,7 +160,7 @@ export default function ProjectsPage() {
               </div>
             ))}
           </div>
-        </div>
+        </Container>
       </section>
     </main>
   );

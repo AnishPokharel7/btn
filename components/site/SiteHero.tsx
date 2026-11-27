@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function SiteHero() {
   return (
-    <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-start overflow-hidden py-16 md:py-24">
+    <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-start overflow-hidden section-padding">
       {/* Background Image from public/logo/hero.png */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -21,7 +21,7 @@ export default function SiteHero() {
       </div>
 
       {/* Hero Content — constrained max-width, aligned with navbar */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
+      <div className="relative z-10 container-page">
         <div className="max-w-3xl flex flex-col items-start text-left gap-6 md:gap-8">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#012358]/70 border border-[#005DCD]/50 text-blue-200 text-sm sm:text-base font-medium shadow-sm backdrop-blur-md">
