@@ -115,7 +115,7 @@ const statusConfig = {
 
 const typeConfig = {
   "One-time": { color: "bg-orange-100 text-orange-700" },
-  Monthly: { color: "bg-blue-100 text-blue-700" },
+  Monthly: { color: "bg-primary/10 text-primary" },
   Yearly: { color: "bg-purple-100 text-purple-700" },
 } as const;
 
@@ -151,22 +151,22 @@ function ActionDropdown({ donation }: { donation: Donation }) {
     <div className="relative">
       <button
         onClick={(e) => { e.stopPropagation(); setOpen(!open); }}
-        className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8F9FB] hover:text-[#012358] transition-colors"
+        className="p-2 rounded-lg text-text-secondary hover:bg-muted/40 hover:text-foreground transition-colors"
         aria-label="More actions"
         aria-expanded={open}
       >
         <MoreVertical className="w-5 h-5" />
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-1 w-48 bg-white rounded-xl border border-[#E2E8F0] shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-10">
-          <Link href={`/admin/donations/${donation.id}`} className="flex items-center gap-2 px-3 py-2 text-sm text-[#012358] hover:bg-[#F8F9FB]">
+        <div className="absolute right-0 top-full mt-1 w-48 bg-card rounded-xl border border-border shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-10">
+          <Link href={`/admin/donations/${donation.id}`} className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted/40">
             <Eye className="w-4 h-4" /> View Details
           </Link>
-          <Link href={`/admin/donations/${donation.id}/edit`} className="flex items-center gap-2 px-3 py-2 text-sm text-[#012358] hover:bg-[#F8F9FB]">
+          <Link href={`/admin/donations/${donation.id}/edit`} className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted/40">
             <Edit className="w-4 h-4" /> Edit
           </Link>
           {!donation.receiptSent && (
-            <button className="flex items-center gap-2 px-3 py-2 text-sm text-[#005DCD] hover:bg-blue-50 w-full text-left">
+            <button className="flex items-center gap-2 px-3 py-2 text-sm text-primary hover:bg-primary/5 w-full text-left">
               <Download className="w-4 h-4" /> Send Receipt
             </button>
           )}
@@ -223,12 +223,12 @@ export default function DonationsPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Donations Management</h2>
-          <p className="text-[#64748B] text-sm md:text-base mt-1">Track and manage all donor contributions</p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">Donations Management</h2>
+          <p className="text-text-secondary text-sm md:text-base mt-1">Track and manage all donor contributions</p>
         </div>
         <button
           onClick={() => setShowRecordModal(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
         >
           <Plus className="w-5 h-5" />
           Record Donation
@@ -237,44 +237,44 @@ export default function DonationsPage() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
+        <div className="bg-card rounded-2xl border border-border p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#64748B] text-sm font-medium uppercase tracking-wider">Total Amount</p>
-              <p className="text-3xl font-extrabold text-[#012358] mt-1">{formatCurrency(totalAmount)}</p>
+              <p className="text-text-secondary text-sm font-medium uppercase tracking-wider">Total Amount</p>
+              <p className="text-3xl font-extrabold text-foreground mt-1">{formatCurrency(totalAmount)}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center">
               <DollarSign className="w-6 h-6" />
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
+        <div className="bg-card rounded-2xl border border-border p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#64748B] text-sm font-medium uppercase tracking-wider">Completed</p>
-              <p className="text-3xl font-extrabold text-[#012358] mt-1">{completedCount}</p>
+              <p className="text-text-secondary text-sm font-medium uppercase tracking-wider">Completed</p>
+              <p className="text-3xl font-extrabold text-foreground mt-1">{completedCount}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center">
               <CheckCircle2 className="w-6 h-6" />
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
+        <div className="bg-card rounded-2xl border border-border p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#64748B] text-sm font-medium uppercase tracking-wider">Pending</p>
-              <p className="text-3xl font-extrabold text-[#012358] mt-1">{pendingCount}</p>
+              <p className="text-text-secondary text-sm font-medium uppercase tracking-wider">Pending</p>
+              <p className="text-3xl font-extrabold text-foreground mt-1">{pendingCount}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center">
               <Clock className="w-6 h-6" />
             </div>
           </div>
         </div>
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
+        <div className="bg-card rounded-2xl border border-border p-6">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[#64748B] text-sm font-medium uppercase tracking-wider">This Month</p>
-              <p className="text-3xl font-extrabold text-[#012358] mt-1">{thisMonth}</p>
+              <p className="text-text-secondary text-sm font-medium uppercase tracking-wider">This Month</p>
+              <p className="text-3xl font-extrabold text-foreground mt-1">{thisMonth}</p>
             </div>
             <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center">
               <Calendar className="w-6 h-6" />
@@ -284,22 +284,22 @@ export default function DonationsPage() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-2xl border border-[#E2E8F0] p-4 mb-6">
+      <div className="bg-card rounded-2xl border border-border p-4 mb-6">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/70 w-5 h-5" />
             <input
               type="search"
               placeholder="Search donations (name, email, ID, transaction)..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15"
+              className="w-full pl-10 pr-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 min-w-[150px]"
+            className="px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 min-w-[150px]"
           >
             <option value="all">All Status</option>
             <option value="Completed">Completed</option>
@@ -310,7 +310,7 @@ export default function DonationsPage() {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 min-w-[140px]"
+            className="px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 min-w-[140px]"
           >
             <option value="all">All Types</option>
             <option value="One-time">One-time</option>
@@ -320,7 +320,7 @@ export default function DonationsPage() {
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            className="px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 min-w-[150px]"
+            className="px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 min-w-[150px]"
           >
             <option value="all">All Time</option>
             <option value="today">Today</option>
@@ -332,49 +332,49 @@ export default function DonationsPage() {
       </div>
 
       {/* Donations Table */}
-      <div className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden">
+      <div className="bg-card rounded-2xl border border-border overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-[#E2E8F0] bg-[#F8F9FB]">
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Donation ID</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Donor</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Amount</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Program</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Payment</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Status</th>
-                <th className="px-6 py-3 text-left text-xs font-semibold text-[#64748B] uppercase tracking-wider">Date</th>
-                <th className="px-6 py-3 text-right text-xs font-semibold text-[#64748B] uppercase tracking-wider">Actions</th>
+              <tr className="border-b border-border bg-muted/40">
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Donation ID</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Donor</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Amount</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Program</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Payment</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Date</th>
+                <th className="px-6 py-3 text-right text-xs font-semibold text-text-secondary uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E2E8F0]/50">
+            <tbody className="divide-y divide-border/50">
               {filteredDonations.map((donation) => (
-                <tr key={donation.id} className="hover:bg-[#F8F9FB] transition-colors">
+                <tr key={donation.id} className="hover:bg-muted/40 transition-colors">
                   <td className="px-6 py-4">
-                    <div className="font-mono text-sm font-medium text-[#012358]">{donation.id}</div>
-                    <div className="text-xs text-[#94A3B8] font-mono">{donation.transactionId}</div>
+                    <div className="font-mono text-sm font-medium text-foreground">{donation.id}</div>
+                    <div className="text-xs text-text-secondary/70 font-mono">{donation.transactionId}</div>
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-xl bg-[#005DCD]/10 text-[#005DCD] flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                         <User className="w-4 h-4" />
                       </div>
                       <div>
-                        <p className="font-medium text-[#012358]">{donation.donorName}</p>
-                        <p className="text-xs text-[#64748B]">{donation.donorEmail}</p>
+                        <p className="font-medium text-foreground">{donation.donorName}</p>
+                        <p className="text-xs text-text-secondary">{donation.donorEmail}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 font-semibold text-[#012358] text-lg">{`रु ${new Intl.NumberFormat("en-IN").format(donation.amount)}`}</td>
+                  <td className="px-6 py-4 font-semibold text-foreground text-lg">{`रु ${new Intl.NumberFormat("en-IN").format(donation.amount)}`}</td>
                   <td className="px-6 py-4"><TypeBadge type={donation.type} /></td>
                   <td className="px-6 py-4">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-700">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-primary/10 text-primary">
                       {donation.program}
                     </span>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="flex items-center gap-1.5 text-sm text-[#64748B]">
+                    <div className="flex items-center gap-1.5 text-sm text-text-secondary">
                       {(() => {
                         const Icon = paymentMethodIcons[donation.paymentMethod as keyof typeof paymentMethodIcons];
                         return Icon ? <Icon className="w-4 h-4" /> : null;
@@ -383,7 +383,7 @@ export default function DonationsPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4"><StatusBadge status={donation.status} /></td>
-                  <td className="px-6 py-4 text-[#64748B] text-sm whitespace-nowrap">{formatDate(donation.date)}</td>
+                  <td className="px-6 py-4 text-text-secondary text-sm whitespace-nowrap">{formatDate(donation.date)}</td>
                   <td className="px-6 py-4 text-right"><ActionDropdown donation={donation} /></td>
                 </tr>
               ))}
@@ -392,8 +392,8 @@ export default function DonationsPage() {
         </div>
         {filteredDonations.length === 0 && (
           <div className="px-6 py-12 text-center">
-            <CreditCard className="w-12 h-12 text-[#E2E8F0] mx-auto mb-4" />
-            <p className="text-[#64748B]">No donations found</p>
+            <CreditCard className="w-12 h-12 text-border mx-auto mb-4" />
+            <p className="text-text-secondary">No donations found</p>
           </div>
         )}
       </div>
@@ -401,30 +401,30 @@ export default function DonationsPage() {
       {/* Record Donation Modal */}
       {showRecordModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-in fade-in duration-200" onClick={() => setShowRecordModal(false)}>
-          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 slide-in-from-bottom-4 duration-200" onClick={(e) => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between sticky top-0 bg-white">
-              <h3 className="text-lg font-bold text-[#012358]">Record New Donation</h3>
-              <button onClick={() => setShowRecordModal(false)} className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8F9FB] cursor-pointer"><X className="w-5 h-5" /></button>
+          <div className="bg-card rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 slide-in-from-bottom-4 duration-200" onClick={(e) => e.stopPropagation()}>
+            <div className="px-6 py-4 border-b border-border flex items-center justify-between sticky top-0 bg-card">
+              <h3 className="text-lg font-bold text-foreground">Record New Donation</h3>
+              <button onClick={() => setShowRecordModal(false)} className="p-2 rounded-lg text-text-secondary hover:bg-muted/40 cursor-pointer"><X className="w-5 h-5" /></button>
             </div>
             <div className="p-6 space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Donor Name <span className="text-rose-500">*</span></label>
-                  <input type="text" placeholder="Full name" value={newDonation.donorName} onChange={(e) => setNewDonation({ ...newDonation, donorName: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                  <label className="block text-sm font-medium text-foreground mb-1">Donor Name <span className="text-rose-500">*</span></label>
+                  <input type="text" placeholder="Full name" value={newDonation.donorName} onChange={(e) => setNewDonation({ ...newDonation, donorName: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Email</label>
-                  <input type="email" placeholder="donor@email.com" value={newDonation.donorEmail} onChange={(e) => setNewDonation({ ...newDonation, donorEmail: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                  <label className="block text-sm font-medium text-foreground mb-1">Email</label>
+                  <input type="email" placeholder="donor@email.com" value={newDonation.donorEmail} onChange={(e) => setNewDonation({ ...newDonation, donorEmail: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Amount (रु) <span className="text-rose-500">*</span></label>
-                  <input type="number" placeholder="0" value={newDonation.amount} onChange={(e) => setNewDonation({ ...newDonation, amount: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                  <label className="block text-sm font-medium text-foreground mb-1">Amount (रु) <span className="text-rose-500">*</span></label>
+                  <input type="number" placeholder="0" value={newDonation.amount} onChange={(e) => setNewDonation({ ...newDonation, amount: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Donation Type</label>
-                  <select value={newDonation.type} onChange={(e) => setNewDonation({ ...newDonation, type: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                  <label className="block text-sm font-medium text-foreground mb-1">Donation Type</label>
+                  <select value={newDonation.type} onChange={(e) => setNewDonation({ ...newDonation, type: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15">
                     <option value="One-time">One-time</option>
                     <option value="Monthly">Monthly</option>
                     <option value="Yearly">Yearly</option>
@@ -433,8 +433,8 @@ export default function DonationsPage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Program</label>
-                  <select value={newDonation.program} onChange={(e) => setNewDonation({ ...newDonation, program: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                  <label className="block text-sm font-medium text-foreground mb-1">Program</label>
+                  <select value={newDonation.program} onChange={(e) => setNewDonation({ ...newDonation, program: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15">
                     <option value="Education">Education</option>
                     <option value="Healthcare">Healthcare</option>
                     <option value="Environment">Environment</option>
@@ -442,8 +442,8 @@ export default function DonationsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Payment Method</label>
-                  <select value={newDonation.paymentMethod} onChange={(e) => setNewDonation({ ...newDonation, paymentMethod: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                  <label className="block text-sm font-medium text-foreground mb-1">Payment Method</label>
+                  <select value={newDonation.paymentMethod} onChange={(e) => setNewDonation({ ...newDonation, paymentMethod: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15">
                     <option value="Card">Card</option>
                     <option value="UPI">UPI</option>
                     <option value="Net Banking">Net Banking</option>
@@ -453,8 +453,8 @@ export default function DonationsPage() {
                 </div>
               </div>
               <div className="flex justify-end gap-3 pt-2">
-                <button onClick={() => setShowRecordModal(false)} className="px-4 py-2.5 text-sm font-medium text-[#64748B] hover:bg-[#F8F9FB] rounded-xl cursor-pointer transition-colors">Cancel</button>
-                <button onClick={() => setShowRecordModal(false)} className="px-5 py-2.5 text-sm font-semibold text-white bg-[#FD6100] hover:bg-[#e05700] rounded-xl cursor-pointer transition-colors">Record Donation</button>
+                <button onClick={() => setShowRecordModal(false)} className="px-4 py-2.5 text-sm font-medium text-text-secondary hover:bg-muted/40 rounded-xl cursor-pointer transition-colors">Cancel</button>
+                <button onClick={() => setShowRecordModal(false)} className="px-5 py-2.5 text-sm font-semibold text-white bg-secondary hover:bg-[#e05700] rounded-xl cursor-pointer transition-colors">Record Donation</button>
               </div>
             </div>
           </div>

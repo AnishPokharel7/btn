@@ -72,19 +72,19 @@ export default function AdminNav() {
   return (
     <div className="w-full flex flex-col gap-4">
       {/* Top Banner / Utility Bar */}
-      <div className="bg-white rounded-3xl border border-[#E2E8F0] p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div className="bg-card rounded-3xl border border-border p-4 sm:p-5 shadow-xs flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         {/* Left: Organization Badge & Active Path */}
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-[#012358] text-white flex items-center justify-center shadow-xs">
-            <ShieldCheck className="w-5 h-5 text-[#FD6100]" />
+          <div className="w-10 h-10 rounded-2xl bg-primary text-white flex items-center justify-center shadow-xs">
+            <ShieldCheck className="w-5 h-5 text-secondary" />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-[#005DCD] tracking-wider uppercase">
+              <span className="text-xs font-bold text-primary tracking-wider uppercase">
                 Better Tomorrow Nepal
               </span>
             </div>
-            <h1 className="text-base sm:text-lg font-extrabold text-[#012358] tracking-tight">
+            <h1 className="text-base sm:text-lg font-extrabold text-foreground tracking-tight">
               Management Workspace
             </h1>
           </div>
@@ -94,13 +94,13 @@ export default function AdminNav() {
         <div className="flex items-center justify-between sm:justify-end gap-3 flex-wrap sm:flex-nowrap">
           {/* Quick Search */}
           <div className="relative hidden md:block w-64 lg:w-72">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#94A3B8]">
+            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-text-secondary/70">
               <Search className="w-4 h-4" />
             </span>
             <input
               type="search"
               placeholder="Search admin workspace..."
-              className="w-full pl-9 pr-4 py-2 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-xs sm:text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 transition-all"
+              className="w-full pl-9 pr-4 py-2 bg-muted/40 border border-border rounded-xl text-xs sm:text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 transition-all"
             />
           </div>
 
@@ -110,47 +110,47 @@ export default function AdminNav() {
               <button
                 type="button"
                 onClick={() => setNotificationOpen(!notificationOpen)}
-                className="relative p-2.5 rounded-2xl bg-[#F8F9FB] border border-[#E2E8F0] text-[#64748B] hover:text-[#012358] hover:border-[#005DCD]/40 transition-all cursor-pointer"
+                className="relative p-2.5 rounded-2xl bg-muted/40 border border-border text-text-secondary hover:text-foreground hover:border-primary/40 transition-all cursor-pointer"
                 aria-label="Notifications"
                 aria-expanded={notificationOpen}
               >
                 <Bell className="w-4 h-4" />
                 {unreadCount > 0 && (
-                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#FD6100] text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-xs">
+                  <span className="absolute -top-1 -right-1 w-4 h-4 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-xs">
                     {unreadCount}
                   </span>
                 )}
               </button>
 
               {notificationOpen && (
-                <div className="absolute right-0 top-full mt-2 w-80 bg-white rounded-2xl border border-[#E2E8F0] shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-                  <div className="px-4 py-3 border-b border-[#E2E8F0] flex items-center justify-between bg-[#F8F9FB]">
-                    <h3 className="font-bold text-xs uppercase tracking-wider text-[#012358]">Notifications</h3>
+                <div className="absolute right-0 top-full mt-2 w-80 bg-card rounded-2xl border border-border shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                  <div className="px-4 py-3 border-b border-border flex items-center justify-between bg-muted/40">
+                    <h3 className="font-bold text-xs uppercase tracking-wider text-foreground">Notifications</h3>
                     {unreadCount > 0 && (
                       <button
                         type="button"
                         onClick={markAllAsRead}
-                        className="text-xs text-[#005DCD] hover:underline font-semibold cursor-pointer"
+                        className="text-xs text-primary hover:underline font-semibold cursor-pointer"
                       >
                         Mark all read
                       </button>
                     )}
                   </div>
-                  <div className="max-h-80 overflow-y-auto divide-y divide-[#E2E8F0]/60">
+                  <div className="max-h-80 overflow-y-auto divide-y divide-border/60">
                     {notifications.map((notif) => (
                       <div
                         key={notif.id}
                         className={`p-3.5 flex items-start gap-3 transition-colors ${
-                          !notif.read ? "bg-blue-50/40" : "hover:bg-[#F8F9FB]"
+                          !notif.read ? "bg-primary/5" : "hover:bg-muted/40"
                         }`}
                       >
-                        <div className="w-8 h-8 rounded-xl bg-[#005DCD]/10 text-[#005DCD] flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-8 h-8 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
                           <Bell className="w-4 h-4" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="font-semibold text-[#012358] text-xs leading-tight">{notif.title}</p>
-                          <p className="text-[#64748B] text-xs mt-0.5 line-clamp-2">{notif.message}</p>
-                          <p className="text-[#94A3B8] text-[10px] mt-1">{notif.time}</p>
+                          <p className="font-semibold text-foreground text-xs leading-tight">{notif.title}</p>
+                          <p className="text-text-secondary text-xs mt-0.5 line-clamp-2">{notif.message}</p>
+                          <p className="text-text-secondary/70 text-[10px] mt-1">{notif.time}</p>
                         </div>
                       </div>
                     ))}
@@ -164,28 +164,28 @@ export default function AdminNav() {
               <button
                 type="button"
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="flex items-center gap-2 p-1.5 pr-3 rounded-2xl bg-[#F8F9FB] border border-[#E2E8F0] hover:border-[#005DCD]/40 transition-all cursor-pointer"
+                className="flex items-center gap-2 p-1.5 pr-3 rounded-2xl bg-muted/40 border border-border hover:border-primary/40 transition-all cursor-pointer"
                 aria-expanded={userMenuOpen}
                 aria-label="User menu"
               >
-                <div className="w-7 h-7 rounded-xl bg-[#012358] flex items-center justify-center text-white text-xs font-bold shadow-xs">
+                <div className="w-7 h-7 rounded-xl bg-primary flex items-center justify-center text-white text-xs font-bold shadow-xs">
                   <User className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-xs font-bold text-[#012358] hidden sm:block">Admin</span>
-                <ChevronDown className="w-3.5 h-3.5 text-[#64748B]" />
+                <span className="text-xs font-bold text-foreground hidden sm:block">Admin</span>
+                <ChevronDown className="w-3.5 h-3.5 text-text-secondary" />
               </button>
 
               {userMenuOpen && (
-                <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-2xl border border-[#E2E8F0] shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-                  <div className="px-4 py-3 border-b border-[#E2E8F0] bg-[#F8F9FB]">
-                    <p className="font-bold text-[#012358] text-sm">System Administrator</p>
-                    <p className="text-xs text-[#64748B]">admin@bettertomorrownepal.org</p>
+                <div className="absolute right-0 top-full mt-2 w-56 bg-card rounded-2xl border border-border shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                  <div className="px-4 py-3 border-b border-border bg-muted/40">
+                    <p className="font-bold text-foreground text-sm">System Administrator</p>
+                    <p className="text-xs text-text-secondary">admin@bettertomorrownepal.org</p>
                   </div>
                   <div className="p-1.5">
                     <Link
                       href="/admin/settings"
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-[#012358] hover:bg-blue-50/60 hover:text-[#005DCD] rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-xl transition-colors"
                     >
                       <Settings className="w-4 h-4" />
                       Settings &amp; Preferences
@@ -193,12 +193,12 @@ export default function AdminNav() {
                     <Link
                       href="/"
                       target="_blank"
-                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-[#012358] hover:bg-blue-50/60 hover:text-[#005DCD] rounded-xl transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 text-xs font-medium text-foreground hover:bg-primary/5 hover:text-primary rounded-xl transition-colors"
                     >
-                      <Sparkles className="w-4 h-4 text-[#FD6100]" />
+                      <Sparkles className="w-4 h-4 text-secondary" />
                       View Public Site
                     </Link>
-                    <hr className="my-1 border-[#E2E8F0]" />
+                    <hr className="my-1 border-border" />
                     <button
                       type="button"
                       onClick={() => setUserMenuOpen(false)}
@@ -218,7 +218,7 @@ export default function AdminNav() {
       {/* Navigation Tabs Bar */}
       <nav
         aria-label="Admin Navigation Tabs"
-        className="w-full bg-white rounded-2xl border border-[#E2E8F0] p-1.5 shadow-xs overflow-x-auto scrollbar-none"
+        className="w-full bg-card rounded-2xl border border-border p-1.5 shadow-xs overflow-x-auto scrollbar-none"
       >
         <div className="flex items-center gap-1 sm:gap-1.5 min-w-max">
           {navTabs.map((tab) => {
@@ -230,18 +230,18 @@ export default function AdminNav() {
                 href={tab.href}
                 className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap cursor-pointer ${
                   isActive
-                    ? "bg-[#012358] text-white shadow-xs"
-                    : "text-[#64748B] hover:text-[#012358] hover:bg-[#F8F9FB]"
+                    ? "bg-primary text-white shadow-xs"
+                    : "text-text-secondary hover:text-foreground hover:bg-muted/40"
                 }`}
               >
-                <span className={isActive ? "text-[#FD6100]" : "text-[#64748B]"}>{tab.icon}</span>
+                <span className={isActive ? "text-secondary" : "text-text-secondary"}>{tab.icon}</span>
                 <span>{tab.label}</span>
                 {tab.badge && (
                   <span
                     className={`px-1.5 py-0.2 rounded-full text-[10px] font-bold ${
                       isActive
-                        ? "bg-[#FD6100] text-white"
-                        : "bg-blue-50 text-[#005DCD] border border-blue-200/50"
+                        ? "bg-secondary text-white"
+                        : "bg-primary/10 text-primary border border-primary/20"
                     }`}
                   >
                     {tab.badge}

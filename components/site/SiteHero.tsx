@@ -24,22 +24,22 @@ export default function SiteHero() {
       <div className="relative z-10 container-page">
         <div className="max-w-3xl flex flex-col items-start text-left gap-6 md:gap-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#012358]/70 border border-[#005DCD]/50 text-blue-200 text-sm sm:text-base font-medium shadow-sm backdrop-blur-md">
-            <Sprout className="w-4 h-4 text-blue-300 shrink-0" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/70 border border-white/30 text-white/90 text-sm sm:text-base font-medium shadow-sm backdrop-blur-md">
+            <Sprout className="w-4 h-4 text-secondary shrink-0" />
             <span>Empowering Lives Since 2026</span>
           </div>
 
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
             Together We Build a{" "}
-            <span className="text-[#005DCD] font-bold">Better</span>
-            <span className="block text-[#FD6100] font-bold mt-1">
+            <span className="text-white font-bold">Better</span>
+            <span className="block text-secondary font-bold mt-1">
               Tomorrow
             </span>
           </h1>
 
           {/* Description */}
-          <p className="text-slate-200 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
+          <p className="text-white/80 text-base sm:text-lg md:text-xl font-normal leading-relaxed max-w-2xl">
             We are dedicated to uplifting underprivileged communities through
             comprehensive education, sustainable healthcare, environmental
             preservation, and women&apos;s empowerment initiatives.
@@ -50,10 +50,10 @@ export default function SiteHero() {
             {/* Donate Now Button */}
             <Button
               asChild
-              className="h-auto bg-[#FD6100] hover:bg-[#e05700] hover:text-black text-white font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 border-0 cursor-pointer"
+              className="h-auto bg-secondary hover:bg-secondary/90 text-white font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 border-0 cursor-pointer"
             >
               <Link href="/donate" className="inline-flex items-center gap-2.5">
-                <Heart className="w-5 h-5 fill-white text-white hover:fill-black hover:text-black transition-colors duration-200" />
+                <Heart className="w-5 h-5 fill-white text-white transition-colors duration-200" />
                 <span>Donate Now</span>
               </Link>
             </Button>
@@ -62,7 +62,7 @@ export default function SiteHero() {
             <Button
               asChild
               variant="outline"
-              className="h-auto bg-transparent hover:bg-[#FD6100]/10 text-[#0400fd] hover:text-white border border-[#FD6100] backdrop-blur-md font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 cursor-pointer"
+              className="h-auto bg-transparent hover:bg-white/10 text-white hover:text-white border border-white/40 hover:border-white/60 backdrop-blur-md font-semibold text-base sm:text-lg px-7 py-3.5 rounded-2xl shadow-lg transition-all duration-200 cursor-pointer"
             >
               <Link
                 href="https://docs.google.com/forms/d/e/1FAIpQLSfV39BVLOhuJ2iFS3WWAcaZPGFVyWatiUU6HQ-Gp0CGMejv5g/viewform"

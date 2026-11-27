@@ -62,19 +62,19 @@ const projects: Project[] = [
 
 export default function ProjectsPage() {
   return (
-    <main className="min-h-screen w-full flex flex-col bg-white">
+    <main className="min-h-screen w-full flex flex-col bg-background">
       {/* Featured Projects Section */}
       <section className="w-full section-padding">
         <Container size="page">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14 md:mb-16">
-            <span className="text-[#0284c7] font-bold tracking-wider text-xs sm:text-sm uppercase block mb-2 sm:mb-3">
+            <span className="text-primary font-bold tracking-wider text-xs sm:text-sm uppercase block mb-2 sm:mb-3">
               OUR TRACK RECORD
             </span>
-            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-slate-950 tracking-tight leading-tight mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-foreground tracking-tight leading-tight mb-4">
               Featured Projects
             </h1>
-            <p className="text-slate-600 text-sm sm:text-base md:text-[1.05rem] leading-relaxed max-w-2xl mx-auto">
+            <p className="text-text-secondary text-sm sm:text-base md:text-[1.05rem] leading-relaxed max-w-2xl mx-auto">
               Discover our ongoing and successfully completed field projects across
               the country.
             </p>
@@ -85,10 +85,10 @@ export default function ProjectsPage() {
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="group flex flex-col bg-[#f8fafc] rounded-3xl overflow-hidden border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-slate-300 transition-all duration-300 hover:-translate-y-1.5"
+                className="group flex flex-col bg-card rounded-3xl overflow-hidden border border-border shadow-sm hover:shadow-xl hover:border-primary/50 transition-all duration-300 hover:-translate-y-1.5"
               >
                 {/* Card Top Image with Status Badge */}
-                <div className="relative w-full aspect-[4/3] overflow-hidden bg-slate-100">
+                <div className="relative w-full aspect-[4/3] overflow-hidden bg-muted">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -99,10 +99,10 @@ export default function ProjectsPage() {
                   {/* Status Badge */}
                   <div className="absolute top-4 right-4 z-10">
                     <span
-                      className={`inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold text-white shadow-sm ${
+                      className={`inline-flex items-center px-3.5 py-1 rounded-full text-xs font-semibold shadow-sm ${
                         project.status === "Ongoing"
-                          ? "bg-[#0fb77a]"
-                          : "bg-[#334155]"
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-muted text-foreground"
                       }`}
                     >
                       {project.status}
@@ -111,21 +111,21 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Card Body */}
-                <div className="p-6 sm:p-7 flex flex-col flex-1 bg-white justify-between">
+                <div className="p-6 sm:p-7 flex flex-col flex-1 bg-card justify-between">
                   <div>
                     {/* Location */}
-                    <div className="flex items-center gap-1.5 text-[#0284c7] font-bold text-xs tracking-wider uppercase mb-2">
+                    <div className="flex items-center gap-1.5 text-primary font-bold text-xs tracking-wider uppercase mb-2">
                       <MapPin className="w-3.5 h-3.5 shrink-0" />
                       <span>{project.location}</span>
                     </div>
 
                     {/* Title */}
-                    <h2 className="text-lg sm:text-xl font-bold text-slate-950 leading-snug mb-2.5 group-hover:text-[#0284c7] transition-colors">
+                    <h2 className="text-lg sm:text-xl font-bold text-foreground leading-snug mb-2.5 group-hover:text-primary transition-colors">
                       {project.title}
                     </h2>
 
                     {/* Description */}
-                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed mb-6">
                       {project.description}
                     </p>
                   </div>
@@ -134,24 +134,24 @@ export default function ProjectsPage() {
                   <div className="pt-2">
                     {/* Progress Bar Header */}
                     <div className="flex items-center justify-between text-xs mb-2">
-                      <span className="font-medium text-slate-600">Progress</span>
-                      <span className="font-semibold text-slate-900">
+                      <span className="font-medium text-text-secondary">Progress</span>
+                      <span className="font-semibold text-foreground">
                         {project.progress}%
                       </span>
                     </div>
 
                     {/* Progress Bar Track */}
-                    <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden mb-5">
+                    <div className="w-full h-1.5 bg-muted rounded-full overflow-hidden mb-5">
                       <div
-                        className="h-full bg-[#0284c7] rounded-full transition-all duration-500"
+                        className="h-full bg-primary rounded-full transition-all duration-500"
                         style={{ width: `${project.progress}%` }}
                       />
                     </div>
 
                     {/* Footer Stats */}
-                    <div className="flex items-center justify-between text-xs text-slate-600 font-medium pt-3 border-t border-slate-100">
+                    <div className="flex items-center justify-between text-xs text-text-secondary font-medium pt-3 border-t border-border">
                       <span>{project.budget}</span>
-                      <span className="font-semibold text-slate-800">
+                      <span className="font-semibold text-foreground">
                         {project.beneficiaries}
                       </span>
                     </div>

@@ -39,6 +39,9 @@ export function Testimonials() {
           title="What Communities Say About Us"
           description="Real voices from the people whose lives have been touched by our work."
           className="mb-12"
+          labelClassName="bg-white/15 text-white border border-white/20"
+          titleClassName="text-white"
+          descriptionClassName="text-white/80"
         />
 
         <div className="relative max-w-4xl mx-auto">

@@ -7,7 +7,7 @@ interface AdminLayoutProps {
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
   return (
-    <div className="min-h-screen bg-[#F8F9FB]">
+    <div className="min-h-screen bg-background">
       <main className="w-full min-h-screen py-8 sm:py-10">
         <div className="container-page flex flex-col gap-6 lg:gap-8">
           <AdminNav />

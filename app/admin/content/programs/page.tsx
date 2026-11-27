@@ -72,7 +72,7 @@ const categoryIcons: Record<Program["category"], React.ReactNode> = {
 };
 
 const categoryColors: Record<Program["category"], string> = {
-  Education: "bg-blue-100 text-blue-700",
+  Education: "bg-primary/10 text-primary",
   Healthcare: "bg-rose-100 text-rose-700",
   "Women's Empowerment": "bg-purple-100 text-purple-700",
   Environment: "bg-emerald-100 text-emerald-700",
@@ -97,18 +97,18 @@ function ActionDropdown({ program }: { program: Program }) {
     <div className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8F9FB] hover:text-[#012358] transition-colors"
+        className="p-2 rounded-lg text-text-secondary hover:bg-muted/40 hover:text-foreground transition-colors"
         aria-label="More actions"
         aria-expanded={open}
       >
         <MoreVertical className="w-5 h-5" />
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-1 w-44 bg-white rounded-xl border border-[#E2E8F0] shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-10">
-          <Link href={`/admin/content/programs/${program.id}`} className="flex items-center gap-2 px-3 py-2 text-sm text-[#012358] hover:bg-[#F8F9FB]">
+        <div className="absolute right-0 top-full mt-1 w-44 bg-card rounded-xl border border-border shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-150 z-10">
+          <Link href={`/admin/content/programs/${program.id}`} className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted/40">
             <Eye className="w-4 h-4" /> View
           </Link>
-          <Link href={`/admin/content/programs/${program.id}/edit`} className="flex items-center gap-2 px-3 py-2 text-sm text-[#012358] hover:bg-[#F8F9FB]">
+          <Link href={`/admin/content/programs/${program.id}/edit`} className="flex items-center gap-2 px-3 py-2 text-sm text-foreground hover:bg-muted/40">
             <Edit className="w-4 h-4" /> Edit
           </Link>
           <button className="flex items-center gap-2 px-3 py-2 text-sm text-rose-500 hover:bg-rose-50 w-full text-left">
@@ -139,34 +139,34 @@ export default function ProgramsPage() {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Programs Management</h2>
-          <p className="text-[#64748B] text-sm md:text-base mt-1">Manage core programs and initiatives</p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">Programs Management</h2>
+          <p className="text-text-secondary text-sm md:text-base mt-1">Manage core programs and initiatives</p>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
         >
           <Plus className="w-5 h-5" />
           Add Program
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl border border-[#E2E8F0] p-4 mb-6">
+      <div className="bg-card rounded-2xl border border-border p-4 mb-6">
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8] w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/70 w-5 h-5" />
             <input
               type="search"
               placeholder="Search programs..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15"
+              className="w-full pl-10 pr-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15"
             />
           </div>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 min-w-[160px]"
+            className="px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 min-w-[160px]"
           >
             <option value="all">All Status</option>
             <option value="Active">Active</option>
@@ -178,7 +178,7 @@ export default function ProgramsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredPrograms.map((program) => (
-          <div key={program.id} className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden hover:shadow-lg hover:border-[#005DCD]/30 transition-all duration-300">
+          <div key={program.id} className="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-lg hover:border-primary/30 transition-all duration-300">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
                 src={program.image}
@@ -198,16 +198,16 @@ export default function ProgramsPage() {
               </div>
             </div>
             <div className="p-5">
-              <h3 className="font-bold text-[#012358] text-lg mb-2 line-clamp-1">{program.title}</h3>
-              <p className="text-[#64748B] text-sm mb-4 line-clamp-2">{program.description}</p>
+              <h3 className="font-bold text-foreground text-lg mb-2 line-clamp-1">{program.title}</h3>
+              <p className="text-text-secondary text-sm mb-4 line-clamp-2">{program.description}</p>
               <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="bg-[#F8F9FB] rounded-xl p-3 text-center">
-                  <p className="text-2xl font-extrabold text-[#012358]">{program.volunteers}</p>
-                  <p className="text-xs text-[#64748B]">Volunteers</p>
+                <div className="bg-muted/40 rounded-xl p-3 text-center">
+                  <p className="text-2xl font-extrabold text-foreground">{program.volunteers}</p>
+                  <p className="text-xs text-text-secondary">Volunteers</p>
                 </div>
-                <div className="bg-[#F8F9FB] rounded-xl p-3 text-center">
-                  <p className="text-2xl font-extrabold text-[#012358]">{program.beneficiaries.toLocaleString()}</p>
-                  <p className="text-xs text-[#64748B]">Beneficiaries</p>
+                <div className="bg-muted/40 rounded-xl p-3 text-center">
+                  <p className="text-2xl font-extrabold text-foreground">{program.beneficiaries.toLocaleString()}</p>
+                  <p className="text-xs text-text-secondary">Beneficiaries</p>
                 </div>
               </div>
               <ActionDropdown program={program} />
@@ -217,29 +217,29 @@ export default function ProgramsPage() {
       </div>
 
       {filteredPrograms.length === 0 && (
-        <div className="bg-white rounded-2xl border border-[#E2E8F0] p-12 text-center">
-          <Building2 className="w-12 h-12 text-[#E2E8F0] mx-auto mb-4" />
-          <p className="text-[#64748B]">No programs found</p>
+        <div className="bg-card rounded-2xl border border-border p-12 text-center">
+          <Building2 className="w-12 h-12 text-border mx-auto mb-4" />
+          <p className="text-text-secondary">No programs found</p>
         </div>
       )}
 
       {/* Add Program Modal */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-in fade-in duration-200" onClick={() => setShowAddModal(false)}>
-          <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 slide-in-from-bottom-4 duration-200" onClick={(e) => e.stopPropagation()}>
-            <div className="px-6 py-4 border-b border-[#E2E8F0] flex items-center justify-between sticky top-0 bg-white">
-              <h3 className="text-lg font-bold text-[#012358]">Add New Program</h3>
-              <button onClick={() => setShowAddModal(false)} className="p-2 rounded-lg text-[#64748B] hover:bg-[#F8F9FB] cursor-pointer"><X className="w-5 h-5" /></button>
+          <div className="bg-card rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto animate-in zoom-in-95 slide-in-from-bottom-4 duration-200" onClick={(e) => e.stopPropagation()}>
+            <div className="px-6 py-4 border-b border-border flex items-center justify-between sticky top-0 bg-card">
+              <h3 className="text-lg font-bold text-foreground">Add New Program</h3>
+              <button onClick={() => setShowAddModal(false)} className="p-2 rounded-lg text-text-secondary hover:bg-muted/40 cursor-pointer"><X className="w-5 h-5" /></button>
             </div>
             <div className="p-6 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-[#012358] mb-1">Program Title <span className="text-rose-500">*</span></label>
-                <input type="text" placeholder="Enter program title" value={newProgram.title} onChange={(e) => setNewProgram({ ...newProgram, title: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15" />
+                <label className="block text-sm font-medium text-foreground mb-1">Program Title <span className="text-rose-500">*</span></label>
+                <input type="text" placeholder="Enter program title" value={newProgram.title} onChange={(e) => setNewProgram({ ...newProgram, title: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15" />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Category</label>
-                  <select value={newProgram.category} onChange={(e) => setNewProgram({ ...newProgram, category: e.target.value as Program["category"] })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                  <label className="block text-sm font-medium text-foreground mb-1">Category</label>
+                  <select value={newProgram.category} onChange={(e) => setNewProgram({ ...newProgram, category: e.target.value as Program["category"] })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15">
                     <option value="Education">Education</option>
                     <option value="Healthcare">Healthcare</option>
                     <option value="Women's Empowerment">Women&apos;s Empowerment</option>
@@ -247,8 +247,8 @@ export default function ProgramsPage() {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Status</label>
-                  <select value={newProgram.status} onChange={(e) => setNewProgram({ ...newProgram, status: e.target.value as Program["status"] })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15">
+                  <label className="block text-sm font-medium text-foreground mb-1">Status</label>
+                  <select value={newProgram.status} onChange={(e) => setNewProgram({ ...newProgram, status: e.target.value as Program["status"] })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                     <option value="Draft">Draft</option>
@@ -256,12 +256,12 @@ export default function ProgramsPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#012358] mb-1">Description</label>
-                <textarea rows={3} placeholder="Describe the program..." value={newProgram.description} onChange={(e) => setNewProgram({ ...newProgram, description: e.target.value })} className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 resize-none" />
+                <label className="block text-sm font-medium text-foreground mb-1">Description</label>
+                <textarea rows={3} placeholder="Describe the program..." value={newProgram.description} onChange={(e) => setNewProgram({ ...newProgram, description: e.target.value })} className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 resize-none" />
               </div>
               <div className="flex justify-end gap-3 pt-2">
-                <button onClick={() => setShowAddModal(false)} className="px-4 py-2.5 text-sm font-medium text-[#64748B] hover:bg-[#F8F9FB] rounded-xl cursor-pointer transition-colors">Cancel</button>
-                <button onClick={() => setShowAddModal(false)} className="px-5 py-2.5 text-sm font-semibold text-white bg-[#FD6100] hover:bg-[#e05700] rounded-xl cursor-pointer transition-colors">Create Program</button>
+                <button onClick={() => setShowAddModal(false)} className="px-4 py-2.5 text-sm font-medium text-text-secondary hover:bg-muted/40 rounded-xl cursor-pointer transition-colors">Cancel</button>
+                <button onClick={() => setShowAddModal(false)} className="px-5 py-2.5 text-sm font-semibold text-white bg-secondary hover:bg-[#e05700] rounded-xl cursor-pointer transition-colors">Create Program</button>
               </div>
             </div>
           </div>

@@ -68,7 +68,7 @@ const MainBar = () => {
   return (
     <header
       ref={navRef}
-      className="w-full bg-[#012358] backdrop-blur-md text-slate-800 sticky top-0 z-50 shadow-lg border-b border-[#005DCD]/30"
+      className="w-full bg-primary sticky top-0 z-50 shadow-lg border-b border-white/10"
     >
       <div className="container-page h-20 flex items-center justify-between">
       {/* Logo */}
@@ -104,8 +104,8 @@ const MainBar = () => {
                 <div
                   className={`group flex items-center rounded-lg border transition-all duration-200 shadow-2xs hover:shadow-xs ${
                     isActive
-                      ? "border-[#FD6100] bg-orange-50/90 text-[#FD6100] font-semibold"
-                      : "border-[#E2E8F0] bg-white/90 hover:bg-blue-50/40 hover:border-[#005DCD] text-[#012358] hover:text-[#005DCD]"
+                      ? "border-secondary bg-secondary/10 text-secondary font-semibold"
+                      : "border-white/20 bg-white/10 hover:bg-white/20 hover:border-white/40 text-white hover:text-white"
                   }`}
                 >
                   <Link
@@ -123,7 +123,7 @@ const MainBar = () => {
                         e.preventDefault();
                         setOpenDropdown(isDropdownOpen ? null : link.label);
                       }}
-                      className="pr-2.5 pl-0.5 py-1.5 focus:outline-none text-[#64748B] group-hover:text-[#005DCD] transition-colors"
+                      className="pr-2.5 pl-0.5 py-1.5 focus:outline-none text-white/60 group-hover:text-white transition-colors"
                       aria-label={`Toggle ${link.label} dropdown menu`}
                       aria-expanded={isDropdownOpen}
                     >
@@ -139,7 +139,7 @@ const MainBar = () => {
                 {/* Dropdown menu card if present */}
                 {link.dropdown && isDropdownOpen && (
                   <div
-                    className="absolute top-full left-0 mt-1 bg-white text-[#012358] rounded-xl shadow-xl border border-[#E2E8F0] p-2 min-w-48 flex flex-col gap-1 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
+                    className="absolute top-full left-0 mt-1 bg-card text-foreground rounded-xl shadow-xl border border-border p-2 min-w-48 flex flex-col gap-1 z-50 animate-in fade-in slide-in-from-top-2 duration-150"
                     onMouseEnter={() => handleMouseEnter(link.label)}
                     onMouseLeave={() => handleMouseLeave()}
                   >
@@ -147,7 +147,7 @@ const MainBar = () => {
                       <Link
                         key={subItem.href}
                         href={subItem.href}
-                        className="text-xs xl:text-sm font-medium text-[#012358] hover:text-[#005DCD] hover:bg-blue-50/60 rounded-lg px-3 py-2 border border-transparent hover:border-[#005DCD]/30 transition-all block whitespace-nowrap"
+                        className="text-xs xl:text-sm font-medium text-foreground hover:text-primary hover:bg-primary/5 rounded-lg px-3 py-2 border border-transparent hover:border-primary/20 transition-all block whitespace-nowrap"
                         onClick={() => setOpenDropdown(null)}
                       >
                         {subItem.label}
@@ -165,7 +165,7 @@ const MainBar = () => {
       <button
         type="button"
         onClick={() => setIsMenuOpen((prev) => !prev)}
-        className="flex lg:hidden items-center justify-center p-2 rounded-xl border border-[#E2E8F0] bg-white/80 hover:bg-blue-50 text-white hover:text-[#005DCD] focus:outline-none transition-all shadow-2xs"
+        className="flex lg:hidden items-center justify-center p-2 rounded-xl border border-white/20 bg-white/10 hover:bg-white/20 text-white focus:outline-none transition-all shadow-2xs"
         aria-label="Toggle navigation menu"
         aria-expanded={isMenuOpen}
       >
@@ -178,7 +178,7 @@ const MainBar = () => {
 
       {/* Mobile / tablet dropdown (below lg) */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#F8F9FB] backdrop-blur-md flex flex-col gap-3 px-6 py-6 lg:hidden border-t border-[#E2E8F0] shadow-xl max-h-[85vh] overflow-y-auto z-50">
+        <div className="absolute top-full left-0 w-full bg-primary/95 backdrop-blur-md flex flex-col gap-3 px-6 py-6 lg:hidden border-t border-white/10 shadow-xl max-h-[85vh] overflow-y-auto z-50">
           <nav className="flex flex-col gap-2.5">
             {navLinks.map((link) => {
               const isSubOpen = mobileSubmenu === link.label;
@@ -189,8 +189,8 @@ const MainBar = () => {
                   <div
                     className={`flex items-center justify-between rounded-xl border transition-all duration-200 shadow-2xs ${
                       isActive
-                        ? "border-[#FD6100] bg-orange-50 text-[#FD6100] font-semibold"
-                        : "border-[#E2E8F0] bg-white hover:bg-blue-50/50 hover:border-[#005DCD] text-[#012358] font-medium"
+                        ? "border-secondary bg-secondary/10 text-secondary font-semibold"
+                        : "border-white/20 bg-white/10 hover:bg-white/20 hover:border-white/30 text-white font-medium"
                     }`}
                   >
                     <Link
@@ -208,7 +208,7 @@ const MainBar = () => {
                         onClick={() =>
                           setMobileSubmenu(isSubOpen ? null : link.label)
                         }
-                        className="p-3 text-[#64748B] hover:text-[#012358]"
+                        className="p-3 text-white/60 hover:text-white"
                         aria-label={`Toggle ${link.label} submenu`}
                       >
                         <ChevronDown
@@ -227,7 +227,7 @@ const MainBar = () => {
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          className="text-xs sm:text-sm font-normal text-[#012358] hover:text-[#005DCD] bg-white border border-[#E2E8F0] rounded-lg px-3.5 py-2 hover:border-[#005DCD]/40 hover:bg-blue-50/40 transition-all"
+                          className="text-xs sm:text-sm font-normal text-white/80 hover:text-white bg-white/10 border border-white/20 rounded-lg px-3.5 py-2 hover:border-white/30 hover:bg-white/20 transition-all"
                           onClick={() => setIsMenuOpen(false)}
                         >
                           {subItem.label}

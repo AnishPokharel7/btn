@@ -67,7 +67,7 @@ export function Hero() {
 
             {/* Primary CTA */}
             <div className="flex flex-wrap items-center gap-4 mb-16 animate-in fade-in slide-in-from-bottom-4 duration-500 delay-300">
-              <Button size="lg" asChild className="gap-3">
+              <Button variant="secondary" size="lg" asChild className="gap-3">
                 <Link href="/programs">
                   <span>Explore Our Work</span>
                   <ArrowRight className="w-5 h-5" aria-hidden="true" />

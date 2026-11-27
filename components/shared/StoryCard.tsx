@@ -46,7 +46,7 @@ export function StoryCard({ story, variant = 'default', className = '', style }:
           </div>
         </div>
         <div className="p-8 lg:p-10 flex flex-col justify-center">
-          <div className="flex flex-wrap items-center gap-3 text-sm text-white/80 mb-4">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-text-secondary mb-4">
             <span className="flex items-center gap-1">
               <Calendar className="w-4 h-4" aria-hidden="true" />
               {date}
@@ -56,17 +56,17 @@ export function StoryCard({ story, variant = 'default', className = '', style }:
               {story.readTime}
             </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
-            <Link href={`/stories/${story.slug}`} className="hover:text-secondary transition-colors">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight mb-4 group-hover:text-primary transition-colors">
+            <Link href={`/stories/${story.slug}`}>
               {story.title}
             </Link>
           </h2>
-          <p className="text-white/90 text-base leading-relaxed mb-6 max-w-xl">
+          <p className="text-text-secondary text-base leading-relaxed mb-6 max-w-xl">
             {story.excerpt}
           </p>
           <Link
             href={`/stories/${story.slug}`}
-            className="inline-flex items-center gap-2 text-white font-semibold text-base hover:text-secondary transition-colors group w-fit"
+            className="inline-flex items-center gap-2 text-primary font-semibold text-base hover:text-primary/80 transition-colors group w-fit"
           >
             <span>Read Full Story</span>
             <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

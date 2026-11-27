@@ -14,14 +14,14 @@ const settingsSections = [
 
 function SectionCard({ title, description, children, icon: Icon }: { title: string; description: string; children: React.ReactNode; icon: React.ComponentType<{ className?: string }> }) {
   return (
-    <div className="bg-white rounded-2xl border border-[#E2E8F0] p-6">
+    <div className="bg-card rounded-2xl border border-border p-6">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-10 h-10 rounded-xl bg-[#005DCD]/10 text-[#005DCD] flex items-center justify-center">
+        <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
           <Icon className="w-5 h-5" />
         </div>
         <div>
-          <h3 className="text-lg font-bold text-[#012358]">{title}</h3>
-          <p className="text-sm text-[#64748B]">{description}</p>
+          <h3 className="text-lg font-bold text-foreground">{title}</h3>
+          <p className="text-sm text-text-secondary">{description}</p>
         </div>
       </div>
       {children}
@@ -31,20 +31,20 @@ function SectionCard({ title, description, children, icon: Icon }: { title: stri
 
 function Toggle({ label, description, checked, onChange, disabled = false }: { label: string; description: string; checked: boolean; onChange: (v: boolean) => void; disabled?: boolean }) {
   return (
-    <label className="flex items-center justify-between py-3 border-b border-[#E2E8F0]/50 last:border-0 cursor-pointer">
+    <label className="flex items-center justify-between py-3 border-b border-border/50 last:border-0 cursor-pointer">
       <div className="flex-1">
-        <p className="font-medium text-[#012358]">{label}</p>
-        <p className="text-sm text-[#64748B]">{description}</p>
+        <p className="font-medium text-foreground">{label}</p>
+        <p className="text-sm text-text-secondary">{description}</p>
       </div>
       <button
         type="button"
         onClick={() => !disabled && onChange(!checked)}
         disabled={disabled}
-        className={`relative w-11 h-6 rounded-full transition-colors ${checked ? "bg-[#FD6100]" : "bg-[#E2E8F0]"} disabled:opacity-50`}
+        className={`relative w-11 h-6 rounded-full transition-colors ${checked ? "bg-secondary" : "bg-muted"} disabled:opacity-50`}
         role="switch"
         aria-checked={checked}
       >
-        <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform ${checked ? "translate-x-5" : ""}`} />
+        <span className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-card shadow-md transition-transform ${checked ? "translate-x-5" : ""}`} />
       </button>
     </label>
   );
@@ -52,37 +52,37 @@ function Toggle({ label, description, checked, onChange, disabled = false }: { l
 
 function InputField({ label, type = "text", value, onChange, placeholder, helpText, icon }: { label: string; type?: string; value: string; onChange: (v: string) => void; placeholder?: string; helpText?: string; icon?: React.ReactNode }) {
   return (
-    <div className="py-3 border-b border-[#E2E8F0]/50 last:border-0">
-      <label className="block text-sm font-medium text-[#012358] mb-1">{label}</label>
+    <div className="py-3 border-b border-border/50 last:border-0">
+      <label className="block text-sm font-medium text-foreground mb-1">{label}</label>
       <div className="relative">
-        {icon && <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#94A3B8]">{icon}</span>}
+        {icon && <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/70">{icon}</span>}
         <input
           type={type}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}
-          className={`w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 ${icon ? "pl-10" : ""}`}
+          className={`w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 ${icon ? "pl-10" : ""}`}
         />
       </div>
-      {helpText && <p className="text-xs text-[#94A3B8] mt-1">{helpText}</p>}
+      {helpText && <p className="text-xs text-text-secondary/70 mt-1">{helpText}</p>}
     </div>
   );
 }
 
 function SelectField({ label, value, onChange, options, helpText }: { label: string; value: string; onChange: (v: string) => void; options: { value: string; label: string }[]; helpText?: string }) {
   return (
-    <div className="py-3 border-b border-[#E2E8F0]/50 last:border-0">
-      <label className="block text-sm font-medium text-[#012358] mb-1">{label}</label>
+    <div className="py-3 border-b border-border/50 last:border-0">
+      <label className="block text-sm font-medium text-foreground mb-1">{label}</label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 appearance-none"
+        className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 appearance-none"
       >
         {options.map((opt) => (
           <option key={opt.value} value={opt.value}>{opt.label}</option>
         ))}
       </select>
-      {helpText && <p className="text-xs text-[#94A3B8] mt-1">{helpText}</p>}
+      {helpText && <p className="text-xs text-text-secondary/70 mt-1">{helpText}</p>}
     </div>
   );
 }
@@ -171,13 +171,13 @@ export default function SettingsPage() {
               <InputField label="Tagline" value={siteTagline} onChange={setSiteTagline} placeholder="Empowering Lives Since 2026" />
               <InputField label="Contact Email" type="email" value={siteEmail} onChange={setSiteEmail} placeholder="contact@example.org" icon={<Mail className="w-5 h-5" />} />
               <InputField label="Contact Phone" type="tel" value={sitePhone} onChange={setSitePhone} placeholder="+977 980-0000000" icon={<Phone className="w-5 h-5" />} />
-              <div className="py-3 border-b border-[#E2E8F0]/50 last:border-0">
-                <label className="block text-sm font-medium text-[#012358] mb-1">Address</label>
+              <div className="py-3 border-b border-border/50 last:border-0">
+                <label className="block text-sm font-medium text-foreground mb-1">Address</label>
                 <textarea
                   value={siteAddress}
                   onChange={(e) => setSiteAddress(e.target.value)}
                   rows={3}
-                  className="w-full px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15 resize-none"
+                  className="w-full px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 resize-none"
                   placeholder="Enter full address"
                 />
               </div>
@@ -224,58 +224,58 @@ export default function SettingsPage() {
             <SectionCard title="Color Theme" description="Customize the brand colors used across the site" icon={Palette}>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Primary Color</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">Primary Color</label>
                   <div className="flex items-center gap-3">
                     <input
                       type="color"
                       value={primaryColor}
                       onChange={(e) => setPrimaryColor(e.target.value)}
-                      className="w-12 h-12 rounded-xl border border-[#E2E8F0] cursor-pointer"
+                      className="w-12 h-12 rounded-xl border border-border cursor-pointer"
                     />
                     <input
                       type="text"
                       value={primaryColor}
                       onChange={(e) => setPrimaryColor(e.target.value)}
-                      className="flex-1 px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] font-mono focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15"
+                      className="flex-1 px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground font-mono focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Secondary Color</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">Secondary Color</label>
                   <div className="flex items-center gap-3">
                     <input
                       type="color"
                       value={secondaryColor}
                       onChange={(e) => setSecondaryColor(e.target.value)}
-                      className="w-12 h-12 rounded-xl border border-[#E2E8F0] cursor-pointer"
+                      className="w-12 h-12 rounded-xl border border-border cursor-pointer"
                     />
                     <input
                       type="text"
                       value={secondaryColor}
                       onChange={(e) => setSecondaryColor(e.target.value)}
-                      className="flex-1 px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] font-mono focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15"
+                      className="flex-1 px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground font-mono focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-[#012358] mb-1">Accent Color</label>
+                  <label className="block text-sm font-medium text-foreground mb-1">Accent Color</label>
                   <div className="flex items-center gap-3">
                     <input
                       type="color"
                       value={accentColor}
                       onChange={(e) => setAccentColor(e.target.value)}
-                      className="w-12 h-12 rounded-xl border border-[#E2E8F0] cursor-pointer"
+                      className="w-12 h-12 rounded-xl border border-border cursor-pointer"
                     />
                     <input
                       type="text"
                       value={accentColor}
                       onChange={(e) => setAccentColor(e.target.value)}
-                      className="flex-1 px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] font-mono focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15"
+                      className="flex-1 px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground font-mono focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15"
                     />
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-[#94A3B8] mt-3">Changes require a rebuild to take effect on the live site.</p>
+              <p className="text-xs text-text-secondary/70 mt-3">Changes require a rebuild to take effect on the live site.</p>
             </SectionCard>
 
             <SectionCard title="Display Options" description="Configure UI display preferences" icon={Palette}>
@@ -300,7 +300,7 @@ export default function SettingsPage() {
 
             <SectionCard title="Push Notifications" description="Browser push notifications for real-time updates" icon={Bell}>
               <Toggle label="Enable Push Notifications" description="Allow browser notifications for important events" checked={pushNotifications} onChange={setPushNotifications} />
-              <p className="text-xs text-[#94A3B8] mt-2">Requires browser permission. Manage in browser settings.</p>
+              <p className="text-xs text-text-secondary/70 mt-2">Requires browser permission. Manage in browser settings.</p>
             </SectionCard>
           </>
         );
@@ -321,7 +321,7 @@ export default function SettingsPage() {
 
             <SectionCard title="Access Control" description="Restrict access by IP address" icon={Shield}>
               <Toggle label="IP Whitelist" description="Only allow admin access from whitelisted IP addresses" checked={ipWhitelistEnabled} onChange={setIpWhitelistEnabled} />
-              <p className="text-xs text-[#94A3B8] mt-2">Configure IP whitelist in your hosting provider or firewall settings.</p>
+              <p className="text-xs text-text-secondary/70 mt-2">Configure IP whitelist in your hosting provider or firewall settings.</p>
             </SectionCard>
           </>
         );
@@ -346,13 +346,13 @@ export default function SettingsPage() {
 
             <SectionCard title="Manual Actions" description="Perform immediate database operations" icon={Database}>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="px-6 py-3 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm font-medium text-[#012358] hover:border-[#005DCD] hover:bg-white transition-all flex items-center justify-center gap-2">
+                <button className="px-6 py-3 bg-muted/40 border border-border rounded-xl text-sm font-medium text-foreground hover:border-primary hover:bg-card transition-all flex items-center justify-center gap-2">
                   <Download className="w-5 h-5" /> Backup Now
                 </button>
-                <button className="px-6 py-3 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm font-medium text-[#012358] hover:border-[#005DCD] hover:bg-white transition-all flex items-center justify-center gap-2">
+                <button className="px-6 py-3 bg-muted/40 border border-border rounded-xl text-sm font-medium text-foreground hover:border-primary hover:bg-card transition-all flex items-center justify-center gap-2">
                   <Upload className="w-5 h-5" /> Restore Backup
                 </button>
-                <button className="px-6 py-3 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm font-medium text-[#012358] hover:border-[#005DCD] hover:bg-white transition-all flex items-center justify-center gap-2">
+                <button className="px-6 py-3 bg-muted/40 border border-border rounded-xl text-sm font-medium text-foreground hover:border-primary hover:bg-card transition-all flex items-center justify-center gap-2">
                   <Database className="w-5 h-5" /> Optimize Database
                 </button>
               </div>
@@ -370,21 +370,21 @@ export default function SettingsPage() {
             <SectionCard title="API Keys" description="Manage API keys for third-party integrations" icon={Key}>
               <div className="space-y-3 mb-4">
                 {apiKeys.map((key) => (
-                  <div key={key.id} className="flex items-center justify-between p-4 bg-[#F8F9FB] rounded-xl border border-[#E2E8F0]">
+                  <div key={key.id} className="flex items-center justify-between p-4 bg-muted/40 rounded-xl border border-border">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-[#005DCD]/10 text-[#005DCD] flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
                         <Key className="w-5 h-5" />
                       </div>
                       <div>
-                        <p className="font-medium text-[#012358]">{key.name}</p>
-                        <p className="text-xs text-[#94A3B8] font-mono">{key.key}</p>
+                        <p className="font-medium text-foreground">{key.name}</p>
+                        <p className="text-xs text-text-secondary/70 font-mono">{key.key}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${key.status === "Active" ? "bg-emerald-100 text-emerald-700" : "bg-rose-100 text-rose-700"}`}>
                         {key.status}
                       </span>
-                      <button onClick={() => deleteApiKey(key.id)} className="p-2 rounded-lg text-[#64748B] hover:bg-[#E2E8F0] hover:text-[#012358]">
+                      <button onClick={() => deleteApiKey(key.id)} className="p-2 rounded-lg text-text-secondary hover:bg-muted/60 hover:text-foreground">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -397,9 +397,9 @@ export default function SettingsPage() {
                   value={newKeyName}
                   onChange={(e) => setNewKeyName(e.target.value)}
                   placeholder="Key name (e.g., Stripe Production)"
-                  className="flex-1 px-4 py-2.5 bg-[#F8F9FB] border border-[#E2E8F0] rounded-xl text-sm text-[#012358] placeholder:text-[#94A3B8] focus:outline-none focus:border-[#005DCD] focus:bg-white focus:ring-2 focus:ring-[#005DCD]/15"
+                  className="flex-1 px-4 py-2.5 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15"
                 />
-                <button onClick={generateApiKey} className="px-4 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-medium rounded-xl flex items-center gap-2">
+                <button onClick={generateApiKey} className="px-4 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-medium rounded-xl flex items-center gap-2">
                   <Key className="w-4 h-4" /> Generate
                 </button>
               </div>
@@ -407,19 +407,19 @@ export default function SettingsPage() {
 
             {showNewKey && (
               <SectionCard title="New API Key Generated" description="Copy this key now - it won't be shown again" icon={Key}>
-                <div className="flex items-center gap-3 p-4 bg-[#F8F9FB] rounded-xl border border-[#E2E8F0]">
+                <div className="flex items-center gap-3 p-4 bg-muted/40 rounded-xl border border-border">
                   <input
                     type="text"
                     value={generatedKey}
                     readOnly
-                    className="flex-1 px-4 py-2.5 bg-white border border-[#E2E8F0] rounded-xl text-sm font-mono text-[#012358]"
+                    className="flex-1 px-4 py-2.5 bg-card border border-border rounded-xl text-sm font-mono text-foreground"
                   />
-                  <button className="px-4 py-2.5 bg-[#005DCD] hover:bg-[#005DCD]/90 text-white font-medium rounded-xl flex items-center gap-2">
+                  <button className="px-4 py-2.5 bg-primary hover:bg-primary/90 text-white font-medium rounded-xl flex items-center gap-2">
                     <Check className="w-4 h-4" /> Copied
                   </button>
                 </div>
                 <div className="flex justify-end">
-                  <button onClick={() => { setShowNewKey(false); setGeneratedKey(""); }} className="text-sm text-[#005DCD] hover:underline">I&apos;ve copied the key</button>
+                  <button onClick={() => { setShowNewKey(false); setGeneratedKey(""); }} className="text-sm text-primary hover:underline">I&apos;ve copied the key</button>
                 </div>
               </SectionCard>
             )}
@@ -435,13 +435,13 @@ export default function SettingsPage() {
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-[#012358] tracking-tight">Settings</h2>
-          <p className="text-[#64748B] text-sm md:text-base mt-1">Configure your organization settings</p>
+          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">Settings</h2>
+          <p className="text-text-secondary text-sm md:text-base mt-1">Configure your organization settings</p>
         </div>
         <button
           onClick={handleSave}
           disabled={saving}
-          className="px-6 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+          className="px-6 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
         >
           {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
           {saving ? "Saving..." : saved ? "Saved!" : "Save Changes"}
@@ -450,7 +450,7 @@ export default function SettingsPage() {
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Sidebar Navigation */}
         <aside className="lg:w-56 flex-shrink-0">
-          <nav className="bg-white rounded-2xl border border-[#E2E8F0] overflow-hidden">
+          <nav className="bg-card rounded-2xl border border-border overflow-hidden">
             <ul className="p-2" role="list">
               {settingsSections.map((section) => {
                 const Icon = section.icon;
@@ -461,8 +461,8 @@ export default function SettingsPage() {
                       onClick={() => setActiveSection(section.id)}
                       className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
                         isActive
-                          ? "bg-[#012358] text-white shadow-sm"
-                          : "text-[#64748B] hover:bg-[#F8F9FB] hover:text-[#012358]"
+                          ? "bg-primary text-white shadow-sm"
+                          : "text-text-secondary hover:bg-muted/40 hover:text-foreground"
                       }`}
                       aria-current={isActive ? "page" : undefined}
                     >
@@ -480,12 +480,12 @@ export default function SettingsPage() {
         <div className="flex-1 min-w-0">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
             <div>
-              <h2 className="text-lg font-semibold text-[#64748B]">Configure your organization settings</h2>
+              <h2 className="text-lg font-semibold text-text-secondary">Configure your organization settings</h2>
             </div>
             <button
               onClick={handleSave}
               disabled={saving}
-              className="px-6 py-2.5 bg-[#FD6100] hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+              className="px-6 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
               {saving ? "Saving..." : saved ? "Saved!" : "Save Changes"}

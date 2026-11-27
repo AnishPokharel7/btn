@@ -69,16 +69,16 @@ export default function GalleryPage() {
       : galleryItems.filter((item) => item.category === selectedCategory);
 
   return (
-    <main className="min-h-screen w-full flex flex-col bg-white">
+    <main className="min-h-screen w-full flex flex-col bg-background">
       {/* Gallery Section */}
       <section className="w-full section-padding">
         <Container size="page">
           {/* Header */}
           <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
-            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-slate-950 tracking-tight leading-tight mb-3 sm:mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-foreground tracking-tight leading-tight mb-3 sm:mb-4">
               Our Gallery in Action
             </h1>
-            <p className="text-slate-600 text-sm sm:text-base md:text-[1.05rem] leading-relaxed max-w-2xl mx-auto">
+            <p className="text-text-secondary text-sm sm:text-base md:text-[1.05rem] leading-relaxed max-w-2xl mx-auto">
               A glimpse into our ground operations, community workshops, and smiling faces.
             </p>
           </div>
@@ -94,8 +94,8 @@ export default function GalleryPage() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? "bg-[#0284c7] text-white shadow-sm font-semibold"
-                      : "bg-white text-slate-700 border border-slate-200/90 hover:border-slate-300 hover:text-slate-950 hover:bg-slate-50/80"
+                      ? "bg-primary text-primary-foreground shadow-sm font-semibold"
+                      : "bg-card text-foreground border border-border hover:border-primary/50 hover:bg-muted"
                   }`}
                 >
                   {category}
@@ -109,7 +109,7 @@ export default function GalleryPage() {
             {filteredItems.map((item) => (
               <div
                 key={item.id}
-                className="group relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-slate-100 border border-slate-200/70 shadow-xs hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5"
+                className="group relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-card border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5"
               >
                 <Image
                   src={item.src}
@@ -119,7 +119,7 @@ export default function GalleryPage() {
                   className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
                 />
                 {/* Subtle gradient overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5">
                   <span className="text-white text-sm font-semibold drop-shadow-md">
                     {item.title}
                   </span>
