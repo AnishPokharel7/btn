@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { AnnouncementBar } from "@/components/layout/AnnouncementBar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,7 +31,7 @@ export const metadata: Metadata = {
     url: "https://bettertomorrownepal.org",
     siteName: "Better Tomorrow Nepal Foundation",
     title: "Better Tomorrow Nepal Foundation | Empowering Communities",
-    description: "Empowering communities across Nepal through education, healthcare, women's empowerment, environmental sustainability, and humanitarian assistance.",
+    description: "Empowering communities across Nepal through sustainable development programs.",
     images: [
       {
         url: "/logo/hero.png",
@@ -81,10 +78,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body suppressHydrationWarning className="min-h-full flex flex-col bg-background">
-        <AnnouncementBar />
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );

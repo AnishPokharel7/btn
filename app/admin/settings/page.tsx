@@ -434,18 +434,16 @@ export default function SettingsPage() {
   return (
     <div>
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">Settings</h2>
-          <p className="text-text-secondary text-sm md:text-base mt-1">Configure your organization settings</p>
+        <div className="sm:w-auto">
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-6 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+          >
+            {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
+            {saving ? "Saving..." : saved ? "Saved!" : "Save Changes"}
+          </button>
         </div>
-        <button
-          onClick={handleSave}
-          disabled={saving}
-          className="px-6 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
-        >
-          {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-          {saving ? "Saving..." : saved ? "Saved!" : "Save Changes"}
-        </button>
       </div>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Sidebar Navigation */}
@@ -478,20 +476,6 @@ export default function SettingsPage() {
 
         {/* Main Content */}
         <div className="flex-1 min-w-0">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-            <div>
-              <h2 className="text-lg font-semibold text-text-secondary">Configure your organization settings</h2>
-            </div>
-            <button
-              onClick={handleSave}
-              disabled={saving}
-              className="px-6 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50"
-            >
-              {saving ? <Loader2 className="w-5 h-5 animate-spin" /> : <Save className="w-5 h-5" />}
-              {saving ? "Saving..." : saved ? "Saved!" : "Save Changes"}
-            </button>
-          </div>
-
           <div className="space-y-6">{renderSection()}</div>
         </div>
       </div>

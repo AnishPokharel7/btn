@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Container } from '@/components/shared/Container';
-import { Home, ArrowLeft } from 'lucide-react';
+import { Home, ArrowRight } from 'lucide-react';
 
 export default function NotFound() {
   return (
@@ -18,8 +18,8 @@ export default function NotFound() {
               <span>Back to Home</span>
             </Link>
             <Link href="/contact" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border-2 border-primary text-primary font-semibold text-base hover:bg-primary hover:text-primary-foreground transition-all duration-200">
-              <ArrowLeft className="w-5 h-5" aria-hidden="true" />
               <span>Contact Us</span>
+              <ArrowRight className="w-5 h-5" aria-hidden="true" />
             </Link>
           </div>
         </div>

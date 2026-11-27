@@ -1,9 +1,51 @@
 "use client";
 
-import { Bell, Sun, Moon, LogOut, User, ChevronDown, Menu, Settings, LayoutDashboard, FolderKanban, Building2, Image as ImageIcon, Heart, Users } from "lucide-react";
+import { Bell, Sun, Moon, LogOut, User, ChevronDown, Menu, Settings, ExternalLink, ChevronRight, LayoutDashboard, Home, Users, Building2, BarChart3, FileText, MessageSquare, Images, UserCheck, Calendar, Heart, Globe, FileStack, Search } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
+const pageTitles: Record<string, string> = {
+  "/admin/dashboard": "Dashboard",
+  "/admin/homepage": "Homepage Management",
+  "/admin/about": "About Us Management",
+  "/admin/content/programs": "Programs Management",
+  "/admin/impact": "Impact & Statistics",
+  "/admin/stories": "Stories & News",
+  "/admin/testimonials": "Testimonials",
+  "/admin/content/gallery": "Gallery & Media",
+  "/admin/team": "Team Members",
+  "/admin/events": "Events",
+  "/admin/get-involved": "Get Involved",
+  "/admin/donations": "Donations",
+  "/admin/contact-messages": "Contact Messages",
+  "/admin/pages": "Website Pages",
+  "/admin/navigation": "Navigation Management",
+  "/admin/seo": "SEO Management",
+  "/admin/settings": "Site Settings",
+  "/admin/users": "User Management",
+};
+
+const pageDescriptions: Record<string, string> = {
+  "/admin/dashboard": "Overview of your organization's activity and performance",
+  "/admin/homepage": "Manage homepage sections, hero, stats, and featured content",
+  "/admin/about": "Edit organization story, mission, vision, values, team, and partners",
+  "/admin/content/programs": "Create, edit, and manage programs and their details",
+  "/admin/impact": "Update impact statistics and regional breakdowns",
+  "/admin/stories": "Publish and manage stories, news, and blog posts",
+  "/admin/testimonials": "Manage beneficiary and partner testimonials",
+  "/admin/content/gallery": "Upload and organize images and media assets",
+  "/admin/team": "Manage team member profiles and leadership",
+  "/admin/events": "Create and manage events and workshops",
+  "/admin/get-involved": "Configure volunteer, fundraising, and partnership options",
+  "/admin/donations": "Track donations, campaigns, and donor information",
+  "/admin/contact-messages": "View and manage contact form submissions",
+  "/admin/pages": "Manage public website pages and content",
+  "/admin/navigation": "Configure website navigation menus",
+  "/admin/seo": "Manage SEO settings for all pages",
+  "/admin/settings": "Configure organization details, branding, and integrations",
+  "/admin/users": "Manage admin users and permissions",
+};
 
 export default function AdminHeader() {
   const pathname = usePathname();
@@ -33,6 +75,35 @@ export default function AdminHeader() {
     { id: 3, title: "New volunteer signup", message: "Priya Sharma registered for Healthcare drive", time: "3 hours ago", read: true },
   ];
 
+  const unreadCount = notifications.filter(n => !n.read).length;
+  const pageTitle = pageTitles[pathname] || "Admin Panel";
+  const pageDescription = pageDescriptions[pathname] || "Manage your organization's content and settings";
+
+  interface BreadcrumbItem {
+  label: string;
+  href: string;
+  isCurrent?: boolean;
+}
+
+const getBreadcrumbs = () => {
+    const segments = pathname.split("/").filter(Boolean);
+    const breadcrumbs: BreadcrumbItem[] = [{ label: "Admin", href: "/admin/dashboard" }];
+    
+    let currentPath = "";
+    segments.forEach((segment, index) => {
+      currentPath += `/${segment}`;
+      if (index === segments.length - 1) {
+        breadcrumbs.push({ label: pageTitle, href: currentPath, isCurrent: true });
+      } else {
+        const title = pageTitles[currentPath] || segment.charAt(0).toUpperCase() + segment.slice(1);
+        breadcrumbs.push({ label: title, href: currentPath });
+      }
+    });
+    return breadcrumbs;
+  };
+
+  const breadcrumbs = getBreadcrumbs();
+
   return (
     <header className="fixed top-0 left-64 right-0 z-30 h-16 bg-card/95 backdrop-blur-md border-b border-border transition-all duration-300 lg:left-64">
       <div className="h-full max-w-full mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between gap-4">
@@ -45,25 +116,48 @@ export default function AdminHeader() {
           <Menu className="w-6 h-6" />
         </button>
 
-        {/* Page Title - will be overridden by pages */}
-        <div className="flex-1 lg:hidden">
-          <h1 className="text-lg font-bold text-foreground">Admin Panel</h1>
-        </div>
-
-        {/* Search */}
-        <div className="hidden md:flex flex-1 max-w-md mx-4 md:mx-8">
-          <div className="relative w-full">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/70"><svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></span>
-            <input
-              type="search"
-              placeholder="Search projects, donations, users..."
-              className="w-full pl-10 pr-4 py-2 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 transition-all"
-            />
-          </div>
+        {/* Breadcrumbs & Page Title */}
+        <div className="flex-1 min-w-0">
+          <nav className="flex items-center gap-1.5 text-sm mb-1 overflow-x-auto pb-1" aria-label="Breadcrumb">
+            <ol className="flex items-center gap-1.5 flex-nowrap">
+              {breadcrumbs.map((crumb, index) => (
+                <li key={crumb.href} className="flex items-center gap-1.5">
+                  {index > 0 && <ChevronRight className="w-4 h-4 text-text-secondary/50 flex-shrink-0" aria-hidden="true" />}
+                  {crumb.isCurrent ? (
+                    <span className="font-semibold text-foreground truncate">{crumb.label}</span>
+                  ) : (
+                    <Link
+                      href={crumb.href}
+                      className="text-text-secondary hover:text-foreground transition-colors whitespace-nowrap"
+                    >
+                      {crumb.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+          <h1 className="text-lg md:text-xl font-bold text-foreground truncate">{pageTitle}</h1>
         </div>
 
         {/* Right side actions */}
         <div className="flex items-center gap-2">
+          {/* Search */}
+          <div className="hidden md:flex">
+            <div className="relative">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/70">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+              </span>
+              <input
+                type="search"
+                placeholder="Search..."
+                className="w-[200px] md:w-[280px] pl-10 pr-4 py-2 bg-muted/40 border border-border rounded-xl text-sm text-foreground placeholder:text-text-secondary/70 focus:outline-none focus:border-primary focus:bg-card focus:ring-2 focus:ring-primary/15 transition-all"
+              />
+            </div>
+          </div>
+
           {/* Dark mode toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
@@ -82,20 +176,26 @@ export default function AdminHeader() {
               aria-expanded={notificationOpen}
             >
               <Bell className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center">3</span>
+              {unreadCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-4 h-4 bg-secondary text-white text-[10px] font-bold rounded-full flex items-center justify-center">
+                  {unreadCount}
+                </span>
+              )}
             </button>
 
             {notificationOpen && (
               <div className="absolute right-0 top-full mt-2 w-80 bg-card rounded-2xl border border-border shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="px-4 py-3 border-b border-border flex items-center justify-between">
                   <h3 className="font-semibold text-foreground">Notifications</h3>
-                  <button className="text-xs text-primary hover:underline">Mark all read</button>
+                  {unreadCount > 0 && (
+                    <button className="text-xs text-primary hover:underline">Mark all read</button>
+                  )}
                 </div>
                 <div className="max-h-96 overflow-y-auto">
                   {notifications.map((notif) => (
                     <button
                       key={notif.id}
-                      className={`w-full px-4 py-3 text-left hover:bg-muted/40 transition-colors border-b border-border/50 last:border-0 ${!notif.read ? "bg-primary/5/30" : ""}`}
+                      className={`w-full px-4 py-3 text-left hover:bg-muted/40 transition-colors border-b border-border/50 last:border-0 ${!notif.read ? "bg-primary/5" : ""}`}
                     >
                       <div className="flex items-start gap-3">
                         <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -133,10 +233,10 @@ export default function AdminHeader() {
             </button>
 
             {userMenuOpen && (
-              <div className="absolute right-0 top-full mt-2 w-48 bg-card rounded-2xl border border-border shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
+              <div className="absolute right-0 top-full mt-2 w-56 bg-card rounded-2xl border border-border shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
                 <div className="px-4 py-3 border-b border-border">
                   <p className="font-semibold text-foreground text-sm">Administrator</p>
-                  <p className="text-xs text-text-secondary">admin@btn.org</p>
+                  <p className="text-xs text-text-secondary">admin@bettertomorrownepal.org</p>
                 </div>
                 <Link href="/admin/profile" className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:bg-muted/40 hover:text-foreground transition-colors">
                   <User className="w-4 h-4" />
@@ -146,6 +246,15 @@ export default function AdminHeader() {
                   <Settings className="w-4 h-4" />
                   Settings
                 </Link>
+                <hr className="my-1 border-border" />
+                <a
+                  href="/"
+                  target="_blank"
+                  className="flex items-center gap-3 px-4 py-2.5 text-sm text-text-secondary hover:bg-muted/40 hover:text-foreground transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  View Website
+                </a>
                 <hr className="my-1 border-border" />
                 <button className="flex items-center gap-3 px-4 py-2.5 text-sm text-rose-500 hover:bg-rose-50 transition-colors w-full">
                   <LogOut className="w-4 h-4" />
@@ -176,24 +285,29 @@ export default function AdminHeader() {
           </div>
           <nav className="flex-1 py-4 px-3 overflow-y-auto">
             <ul className="space-y-1">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                        isActive ? "bg-primary text-white" : "text-text-secondary hover:bg-muted/40 hover:text-foreground"
-                      }`}
-                    >
-                      <span className="flex-shrink-0">{item.icon}</span>
-                      <span>{item.label}</span>
-                      {item.badge && <span className="ml-auto px-2 py-0.5 text-xs font-bold rounded-full bg-secondary/20 text-secondary">{item.badge}</span>}
-                    </Link>
-                  </li>
-                );
-              })}
+              {navGroups.flatMap((group) => [
+                <li key={`group-${group.label}`} className="px-3 py-2 text-xs font-semibold text-text-secondary/70 uppercase tracking-wider">
+                  {group.label}
+                </li>,
+                ...group.items.map((item) => {
+                  const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+                  return (
+                    <li key={item.href}>
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                          isActive ? "bg-primary text-white" : "text-text-secondary hover:bg-muted/40 hover:text-foreground"
+                        }`}
+                      >
+                        <span className="flex-shrink-0">{item.icon}</span>
+                        <span>{item.label}</span>
+                        {item.badge && <span className="ml-auto px-2 py-0.5 text-xs font-bold rounded-full bg-secondary/20 text-secondary">{item.badge}</span>}
+                      </Link>
+                    </li>
+                  );
+                })
+              ])}
             </ul>
           </nav>
         </aside>
@@ -202,12 +316,47 @@ export default function AdminHeader() {
   );
 }
 
-const navItems = [
-  { label: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard className="w-5 h-5" aria-hidden="true" /> },
-  { label: "Projects", href: "/admin/content/projects", icon: <FolderKanban className="w-5 h-5" aria-hidden="true" />, badge: "3" },
-  { label: "Programs", href: "/admin/content/programs", icon: <Building2 className="w-5 h-5" aria-hidden="true" />, badge: "4" },
-  { label: "Gallery", href: "/admin/content/gallery", icon: <ImageIcon className="w-5 h-5" aria-hidden="true" />, badge: "6" },
-  { label: "Donations", href: "/admin/donations", icon: <Heart className="w-5 h-5" aria-hidden="true" />, badge: "12" },
-  { label: "Users", href: "/admin/users", icon: <Users className="w-5 h-5" aria-hidden="true" /> },
-  { label: "Settings", href: "/admin/settings", icon: <Settings className="w-5 h-5" aria-hidden="true" /> },
+const navGroups = [
+  {
+    label: "Overview",
+    items: [
+      { label: "Dashboard", href: "/admin/dashboard", icon: <LayoutDashboard className="w-5 h-5" aria-hidden="true" /> },
+    ],
+  },
+  {
+    label: "Content Management",
+    items: [
+      { label: "Homepage", href: "/admin/homepage", icon: <Home className="w-5 h-5" aria-hidden="true" /> },
+      { label: "About Us", href: "/admin/about", icon: <Users className="w-5 h-5" aria-hidden="true" /> },
+      { label: "Programs", href: "/admin/content/programs", icon: <Building2 className="w-5 h-5" aria-hidden="true" />, badge: "8" },
+      { label: "Impact & Statistics", href: "/admin/impact", icon: <BarChart3 className="w-5 h-5" aria-hidden="true" /> },
+      { label: "Stories & News", href: "/admin/stories", icon: <FileText className="w-5 h-5" aria-hidden="true" />, badge: "6" },
+      { label: "Testimonials", href: "/admin/testimonials", icon: <MessageSquare className="w-5 h-5" aria-hidden="true" />, badge: "6" },
+      { label: "Gallery & Media", href: "/admin/content/gallery", icon: <Images className="w-5 h-5" aria-hidden="true" />, badge: "12" },
+      { label: "Team Members", href: "/admin/team", icon: <UserCheck className="w-5 h-5" aria-hidden="true" />, badge: "6" },
+      { label: "Events", href: "/admin/events", icon: <Calendar className="w-5 h-5" aria-hidden="true" />, badge: "3" },
+    ],
+  },
+  {
+    label: "Engagement",
+    items: [
+      { label: "Get Involved", href: "/admin/get-involved", icon: <Heart className="w-5 h-5" aria-hidden="true" /> },
+      { label: "Donations", href: "/admin/donations", icon: <Heart className="w-5 h-5" aria-hidden="true" />, badge: "12" },
+      { label: "Contact Messages", href: "/admin/contact-messages", icon: <MessageSquare className="w-5 h-5" aria-hidden="true" />, badge: "5" },
+    ],
+  },
+  {
+    label: "Website Structure",
+    items: [
+      { label: "Pages", href: "/admin/pages", icon: <FileStack className="w-5 h-5" aria-hidden="true" /> },
+      { label: "Navigation", href: "/admin/navigation", icon: <Menu className="w-5 h-5" aria-hidden="true" /> },
+      { label: "SEO Management", href: "/admin/seo", icon: <Search className="w-5 h-5" aria-hidden="true" /> },
+    ],
+  },
+  {
+    label: "Settings",
+    items: [
+      { label: "Site Settings", href: "/admin/settings", icon: <Settings className="w-5 h-5" aria-hidden="true" /> },
+    ],
+  },
 ];

@@ -136,19 +136,16 @@ export default function ProgramsPage() {
 
   return (
     <div>
-      {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">Programs Management</h2>
-          <p className="text-text-secondary text-sm md:text-base mt-1">Manage core programs and initiatives</p>
+        <div className="sm:w-auto">
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
+          >
+            <Plus className="w-5 h-5" />
+            Add Program
+          </button>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
-        >
-          <Plus className="w-5 h-5" />
-          Add Program
-        </button>
       </div>
 
       <div className="bg-card rounded-2xl border border-border p-4 mb-6">

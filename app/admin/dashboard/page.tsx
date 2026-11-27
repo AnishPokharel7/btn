@@ -183,12 +183,6 @@ function RecentActivityFeed() {
 export default function DashboardPage() {
   return (
     <div>
-      {/* Page Header */}
-      <div className="mb-6">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">Dashboard</h2>
-        <p className="text-text-secondary text-sm md:text-base mt-1">Overview of your organization&apos;s activity and performance</p>
-      </div>
-
       {/* Stats Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 md:gap-6 mb-6 md:mb-8">
         {stats.map((stat) => (

@@ -115,19 +115,16 @@ export default function ProjectsPage() {
 
   return (
     <div>
-      {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div>
-          <h2 className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tight">Projects Management</h2>
-          <p className="text-text-secondary text-sm md:text-base mt-1">Manage field projects across regions</p>
+        <div className="sm:w-auto">
+          <button
+            onClick={() => setShowAddModal(true)}
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
+          >
+            <Plus className="w-5 h-5" />
+            Add Project
+          </button>
         </div>
-        <button
-          onClick={() => setShowAddModal(true)}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-secondary hover:bg-[#e05700] text-white font-semibold rounded-xl shadow-lg transition-all cursor-pointer"
-        >
-          <Plus className="w-5 h-5" />
-          Add Project
-        </button>
       </div>
 
       {/* Search & Filters */}
