@@ -26,6 +26,8 @@ import {
   ChevronUp,
 } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
+import Logo from "@/public/images/logo/logo.png";
 
 interface NavItem {
   label: string;
@@ -107,9 +109,7 @@ export default function AdminSidebar() {
       <div className={`flex items-center justify-between h-16 px-4 border-b border-border ${collapsed ? "justify-center" : ""}`}>
         {!collapsed && (
           <Link href="/admin/dashboard" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center">
-              <span className="text-white font-bold text-lg">BTN</span>
-            </div>
+            <Image src={Logo} alt="Better Tomorrow Nepal Logo" width={32} height={32} className="w-8 h-8 object-contain" />
             <span className="font-extrabold text-foreground text-lg">Better Tomorrow Nepal</span>
           </Link>
         )}

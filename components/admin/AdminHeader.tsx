@@ -4,6 +4,8 @@ import { Bell, Sun, Moon, LogOut, User, ChevronDown, Menu, Settings, ExternalLin
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import Logo from "@/public/images/logo/logo.png";
 
 const pageTitles: Record<string, string> = {
   "/admin/dashboard": "Dashboard",
@@ -274,9 +276,7 @@ const getBreadcrumbs = () => {
         <aside className="lg:hidden fixed top-0 left-0 z-50 h-full w-64 bg-card border-r border-border flex flex-col animate-in slide-in-from-left duration-300">
           <div className="flex items-center justify-between h-16 px-4 border-b border-border">
             <Link href="/admin/dashboard" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-white font-bold text-lg">BTN</span>
-              </div>
+              <Image src={Logo} alt="Better Tomorrow Nepal Logo" width={32} height={32} className="w-8 h-8 object-contain" />
               <span className="font-extrabold text-foreground text-lg">Admin</span>
             </Link>
             <button onClick={() => setMobileMenuOpen(false)} className="p-2 rounded-xl text-text-secondary hover:bg-muted/40">
